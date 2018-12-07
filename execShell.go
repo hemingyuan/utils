@@ -16,7 +16,7 @@ func ExecShell(dir string, command string, args ...string) (err error) {
 	cmd.Env = append(cmd.Env, "LANG=")
 
 	if res, err = cmd.CombinedOutput(); err != nil {
-		err = fmt.Errorf("\n%s\nExecute Command [%s] Error. Err: %v", res, command, err)
+		err = fmt.Errorf("\n%s\nERROR: Execute Command [%s] Error. %v", res, command, err)
 		return
 	}
 	fmt.Printf("\n%s\nExecute Command [%s] Successfully.\n", res, command)

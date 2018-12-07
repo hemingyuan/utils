@@ -32,13 +32,13 @@ func ParseTemp(filePath string, data interface{}) (b *bytes.Buffer, err error) {
 
 	t = template.New(path.Base(filePath)).Funcs(tempFuncMap)
 	if t, err = t.ParseFiles(filePath); err != nil {
-		err = fmt.Errorf("Parse Template File [%s] Error. Err: %v", filePath, err)
+		err = fmt.Errorf("ERROR: Parse Template File [%s] Error. %v", filePath, err)
 		return
 	}
 
 	b = new(bytes.Buffer)
 	if err = t.Execute(b, data); err != nil {
-		err = fmt.Errorf("Execute Template [%s] Error. Err: %v", filePath, err)
+		err = fmt.Errorf("ERROR: Execute Template [%s] Error. %v", filePath, err)
 		return
 	}
 	return

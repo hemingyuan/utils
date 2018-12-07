@@ -14,7 +14,7 @@ func PostRequest(url string, headers map[string]string, body io.Reader) (res io.
 	)
 
 	if req, err = http.NewRequest("POST", url, body); err != nil {
-		err = fmt.Errorf("Create New Request [%s] Error. Err: %v", url, err)
+		err = fmt.Errorf("ERROR: Create New Request [%s] Error. %v", url, err)
 		return
 	}
 
@@ -23,7 +23,7 @@ func PostRequest(url string, headers map[string]string, body io.Reader) (res io.
 	}
 
 	if resp, err = http.DefaultClient.Do(req); err != nil {
-		err = fmt.Errorf("Do Request [%s] Error. Err: %v", url, err)
+		err = fmt.Errorf("ERROR: Do Request [%s] Error. %v", url, err)
 		return
 	}
 	defer resp.Body.Close()
