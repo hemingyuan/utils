@@ -30,7 +30,7 @@ func PostRequest(url string, headers map[string]string, body io.Reader) (respDat
 	defer resp.Body.Close()
 
 	if respData, err = ioutil.ReadAll(resp.Body); err != nil {
-		err = fmt.Errorf("Read Response Data from [%s] Error. %v", url, err)
+		err = fmt.Errorf("ERROR: Read Response Data from [%s] Error. %v", url, err)
 		return
 	}
 	return
