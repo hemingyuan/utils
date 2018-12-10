@@ -3,11 +3,12 @@ package utils
 import (
 	"fmt"
 	"io"
+	"io/ioutil"
 	"net/http"
 )
 
 // PostRequest 向指定url发起POST请求
-func PostRequest(url string, headers map[string]string, body io.Reader) (res io.ReadCloser, err error) {
+func PostRequest(url string, headers map[string]string, body io.Reader) (respData []byte, err error) {
 	var (
 		req  *http.Request
 		resp *http.Response
@@ -28,6 +29,9 @@ func PostRequest(url string, headers map[string]string, body io.Reader) (res io.
 	}
 	defer resp.Body.Close()
 
-	res = resp.Body
+	if respData, err = ioutil.ReadAll(resp.Body); err != nil {
+		err = fmt.Errorf("Read Response Data from [%s] Error. %v", url, err)
+		return
+	}
 	return
 }
