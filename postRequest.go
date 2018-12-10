@@ -33,5 +33,10 @@ func PostRequest(url string, headers map[string]string, body io.Reader) (respDat
 		err = fmt.Errorf("ERROR: Read Response Data from [%s] Error. %v", url, err)
 		return
 	}
+
+	if resp.StatusCode != 200 && resp.StatusCode != 301 && resp.StatusCode != 302 {
+		err = fmt.Errorf("ERROR: %s\n%s", resp.Status, respData)
+		return
+	}
 	return
 }
