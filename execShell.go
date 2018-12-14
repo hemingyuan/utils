@@ -19,6 +19,6 @@ func ExecShell(dir string, command string, args ...string) (err error) {
 		err = fmt.Errorf("\n%s\nERROR: Execute Command [%s] Error. %v", res, command, err)
 		return
 	}
-	fmt.Printf("\n%s\nExecute Command [%s] Successfully.\n", res, command)
+	fmt.Printf("\n%s\nExecute Command [%s] Successfully.\n\n", res, command)
 	return
 }
